@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "830840957583",
+    "project_id": "master-coffee-maid-relax-game",
+    "storage_bucket": "master-coffee-maid-relax-game.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830840957583:android:37ab854e2b5526e4015efa",
+        "android_client_info": {
+          "package_name": "com.coffee.maid.mater"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnf7SEIm-bjrFSg8TxT8iXJH57p_zkERU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,33 @@
+Built IOS tu unity ra folder IOS => open file xworkspace (xcode) để built ra device
+http://icefox.com.vn/game/data/trollrober/iostrollrobberv29.txt
+- Đường dẫn file built IOS từ unity ko được để ký tự “_”’, nếu ko sẽ lỗi ko đọc được file GoogleService-info khi built project trong Xcode
+- Archive path: 
+- Chỉnh version file archive: Bundle version string (short): $(MARKETING_VERSION), Bundle version: $(CURRENT_PROJECT_VERSION), “’You need to run the new modified version successfully on your device once.”’
+- Lỗi upload file: The Info.plist file is missing the required key: CFBundleShortVersionString. (Có thể do sdk của facebook). Fix: unity-iphone (target) => built setting => always embed swift standard libraries => No
+
+- lỗi: Library not loaded: IASDKCore => cài thêm thư viện IASDKCore.xcframework (trong: general - framework)(không biết từ đâu yêu cầu thư viện IASDKCore chứ bình thường ko cần đến thư viện này)
+- Lỗi: /Users/icefox/Desktop/Built/Pencil Draw/IOS5/Unity-iPhone.xcodeproj Signing for "Unity-iPhone" requires a development team. Select a development team in the Signing & Capabilities editor (do chưu chọn team wrong realseForProfitling) => chọn all trong signing & capabilities, xong chọn team
+- Lỗi : reason: image not found build xcode (crash game) => fix: trong built phase cho cacs framework như : adservice, adsupport có status là opptional
+- lỗi sign account khi upload achive file: => fix: target là unity framework và iphone-test thì để always embed library là no (vì ko automatic sign in account (nếu để automatic thì khi upload nó lỗi sign in)), còn target là iphone thì để alway embed library là yes
+- * để ý remote config firebase của bản android khác với IOS
+
+* cài Att popup
+link video hướng dẫn: https://www.youtube.com/watch?v=rSk8KO8_LE4&t=304
+1. tạo folder tên "Editor" (nếu chưa có)
+2. tạo 1 script tên PostBuiltStep, cop code trên web unity theo link (https://docs.unity.com/ads/en-us/manual/ATTCompliance), cho vào folder Editor
+3. tạo 1 script tên AttPermissionRequest, cop code trên web unity theo link (https://docs.unity.com/ads/en-us/manual/ATTCompliance)
+4. nhét script AttPermissitonRequest vào 1 gameobject trong hierachy (để gameobject này trong scene đầu tiên bắt đầu game)
+5. cài IOS 14 advertising support trong packag manager
+
+- lỗi  compatible versions for pod :
++ do version của googleAdManager trong applovin không giống với google mobile ads sdk
++ do mediation của ironsource yêu cầu minimum OS cao hơn 12
+=> chỉnh file Pods
+
+- lỗi duplicate symbol:
++ do mediation của ironsource sung đột với mediation của max => remove mediation max (trong Podfile)
+
+- lỗi undefined symbol: _OBJC_CLASS_$_FIRMessaging
++ do thiếu file .bundle của firebase () => import lại các sdk của firebase là ok
+
+* google mobile ads sdk và google ad manager (applovin) PHẢI chung version thì built mới không lỗi

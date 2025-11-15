@@ -1,0 +1,48 @@
+36, 48, 72, 96, 144, 192, 432
+
+* built IOS: cài att mỗi khi reimport maxSDK
+* lưu ý iD adjust khi built android hay ios
+
+* để built android
+- nếu dùng custom gradle, android sdk trong external:
+	+ custom androidmanifest, mainGradle, gradle property trong player built setting
+	+ thêm path vào advanced system setting jdk, jdk/bin ( nếu dùng jdk của unity thì path là openJDK, openJDK/bin)
+	+ thêm path vào advanced system setting sdk android
+	+ thêm path vào advanced system setting gradle/bin
+
+
+============================= Unity 2021 =========================
+- bật patch mainTemplate.gradle trong android resolver setting (ko bật thì các dependencies sẽ không đc add vào mainTemplate khi force resolve => built lỗi)
+- trong external tool custom các: gradle, sdk
+- custom gradleTemplate
+org.gradle.java.home=C:\\Program Files\\Java\\jdk-11.0.17
+org.gradle.jvmargs=-Xmx**JVM_HEAP_SIZE**M
+org.gradle.parallel=true
+//android.enableR8=**MINIFY_WITH_R_EIGHT**
+unityStreamingAssets=**STREAMING_ASSETS**
+# Android Resolver Properties Start
+android.useAndroidX=true
+android.enableJetifier=true
+# Android Resolver Properties End
+**ADDITIONAL_PROPERTIES**
+- custom baseProjectTemplate:
+classpath 'com.android.tools.build:gradle:7.0.3'
+- dùng gradle version 7.3.3
+- tải jdk 11.0.17 exe về cài, cop đường dẫn vào system advanced setting (chủ yếu để thêm đường dẫn vào gradleTemplate)
+
+==================================================================
+=========================== Unity 2022.3.12f1 ====================
+- dùng custom external:
++ sdk (của android studio (đã cài api android level cao nhất))
+- khi built dùng các setting custom (trong player setting)
++ manifest
++ main gradle template
++ launcher gradle template
++ base gradle template
++ gradle properties template
++ gradle setting template
+- nhiều file aar sẽ có trong folder Plugin/Android
+
+=========================================================================
+- thiếu id mrect, khi chạy app nó sẽ crash gaem
+- call back On
