@@ -114,7 +114,7 @@ public class RemoteConfigFb : MonoBehaviour
 
                 var  default_ = FirebaseApp.DefaultInstance; ;
                 DataParam.timeDelayShowAds = float.Parse(FirebaseRemoteConfig.GetInstance(default_).GetValue(remoteDefault[0].key).StringValue);
-                DataParam.ShowOpenAds = FirebaseRemoteConfig.GetInstance(default_).GetValue(remoteDefault[1].key).StringValue == "0" ? false : true;
+                Debug.Log("timeDelayShowAds: " + DataParam.timeDelayShowAds);
 
                 
             });
